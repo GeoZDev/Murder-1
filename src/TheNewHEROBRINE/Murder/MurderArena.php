@@ -75,9 +75,9 @@ class MurderArena {
         if ($this->isStarting()){
             if ($this->countdown == 0){
                 $this->start();
-                $this->broadcastMessage("La partita è iniziata!");
+                $this->broadcastMessage("The game has started!");
             }
-            $this->broadcastPopup(TextFormat::YELLOW . "Inizio tra " . TextFormat::WHITE . $this->countdown . TextFormat::YELLOW . "s");
+            $this->broadcastPopup(TextFormat::YELLOW . "Beginning in " . TextFormat::WHITE . $this->countdown . TextFormat::YELLOW . "s");
             $this->countdown--;
         }
 
@@ -86,9 +86,9 @@ class MurderArena {
             foreach ($this->getPlayers() as $player){
                 $player->sendPopup(
                     $padding . MurderMain::MESSAGE_PREFIX . "\n" .
-                    $padding . TextFormat::AQUA . "Ruolo: " . TextFormat::GREEN . $this->getRole($player) . "\n" .
-                    $padding . TextFormat::AQUA . "Smeraldi: " . TextFormat::YELLOW . $player->getItemCount() . "/5\n" .
-                    $padding . TextFormat::AQUA . "Identità: " . "\n$padding" . TextFormat::GREEN . $player->getDisplayName() . str_repeat("\n", 3));
+                    $padding . TextFormat::AQUA . "Role: " . TextFormat::GREEN . $this->getRole($player) . "\n" .
+                    $padding . TextFormat::AQUA . "Emeralds: " . TextFormat::YELLOW . $player->getItemCount() . "/5\n" .
+                    $padding . TextFormat::AQUA . "Name: " . "\n$padding" . TextFormat::GREEN . $player->getDisplayName() . str_repeat("\n", 3));
             }
             if ($this->spawnEmerald == 0){
                 $this->spawnEmerald($this->espawns[array_rand($this->espawns)]);
@@ -114,13 +114,13 @@ class MurderArena {
                         $this->state = self::GAME_STARTING;
                     }
                 }else{
-                    $player->sendMessage(TextFormat::RED . "Arena piena!");
+                    $player->sendMessage(TextFormat::RED . "That arena is full!");
                 }
             }else{
-                $player->sendMessage(TextFormat::RED . "Sei già in una partita!");
+                $player->sendMessage(TextFormat::RED . "You are already in a game!");
             }
         } else{
-            $player->sendMessage(TextFormat::RED . "Partita in corso!");
+            $player->sendMessage(TextFormat::RED . "That arena has an ongoing game!");
         }
     }
 
@@ -150,10 +150,10 @@ class MurderArena {
                         }
                     }
                     $bystanders = implode(TextFormat::RESET . ", ", $bystanders) . TextFormat::RESET;
-                    $this->stop("Gli innocenti ($bystanders) hanno vinto la partita su " . $this);
+                    $this->stop("The innocent ($bystanders) have won the game on " . $this);
                 }
                 elseif (count($this->getPlayers()) === 1){
-                    $this->stop("L'assassino (" . TextFormat::BLUE . $this->getMurderer()->getName() .  TextFormat::WHITE . ") ha vinto la partita su " . $this);
+                    $this->stop("The murderer (" . TextFormat::BLUE . $this->getMurderer()->getName() .  TextFormat::WHITE . ") has won the game on " . $this);
                 }
             }
             elseif ($this->isStarting()){
