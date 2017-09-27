@@ -14,7 +14,7 @@ use TheNewHEROBRINE\Murder\entity\projectile\MurderKnifeProjectile;
 
 class MurderMain extends PluginBase {
 
-    const MESSAGE_PREFIX = TextFormat::GRAY . "[" . TextFormat::YELLOW . "Murder" . TextFormat::GRAY . "]" . TextFormat::WHITE;
+    const MESSAGE_PREFIX = TextFormat::GRAY . "[" . TextFormat::YELLOW . "MurderMistery" . TextFormat::GRAY . "]" . TextFormat::WHITE;
 
     /** @var Config $config */
     private $config;
@@ -45,8 +45,8 @@ class MurderMain extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents($this->listener = new MurderListener($this), $this);
         $this->getServer()->getCommandMap()->register("murder", new MurderCommand($this));
         $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, [
-            "join" => TextFormat::BLUE . "{player}" . TextFormat::WHITE . " è entrato in partita",
-            "quit" => TextFormat::BLUE . "{player}" . TextFormat::WHITE . " è uscito dalla partita",
+            "join" => TextFormat::BLUE . "{player}" . TextFormat::WHITE . " IR> è entrato in partita",
+            "quit" => TextFormat::BLUE . "{player}" . TextFormat::WHITE . " IR> è uscito dalla partita",
             "countdown" => 40,
             "maxGameTime" => 1200,
             "hub" => "MurderHub"]
